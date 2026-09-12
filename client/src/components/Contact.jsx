@@ -3,7 +3,8 @@ import { personalInfo, socialLinks } from '../data/portfolio';
 import ScrollReveal from './ScrollReveal';
 import '../styles/contact.css';
 
-const API_BASE = import.meta.env.VITE_API_URL || '';
+const rawApiUrl = import.meta.env.VITE_API_URL || '';
+const API_BASE = rawApiUrl.replace(/\/+$/, '');
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
