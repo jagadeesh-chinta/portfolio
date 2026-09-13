@@ -1,160 +1,108 @@
-import { useEffect, useRef, useCallback } from 'react';
-import '../styles/modal.css';
+import { motion } from 'framer-motion';
+import { X, ExternalLink, Code } from 'lucide-react';
+import '../styles/projects.css';
 
 export default function ProjectModal({ project, onClose }) {
-  const modalRef = useRef(null);
-  const closeRef = useRef(null);
-
-  // Focus trap and keyboard handling
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        onClose();
-        return;
-      }
-
-      // Focus trap
-      if (e.key === 'Tab') {
-        const modal = modalRef.current;
-        if (!modal) return;
-        const focusable = modal.querySelectorAll(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        );
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-
-        if (e.shiftKey) {
-          if (document.activeElement === first) {
-            e.preventDefault();
-            last.focus();
-          }
-        } else {
-          if (document.activeElement === last) {
-            e.preventDefault();
-            first.focus();
-          }
-        }
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-    document.body.style.overflow = 'hidden';
-
-    // Focus the close button on open
-    setTimeout(() => closeRef.current?.focus(), 50);
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = '';
-    };
-  }, [onClose]);
-
-  const handleOverlayClick = useCallback((e) => {
-    if (e.target === e.currentTarget) {
-      onClose();
+  // Add specific visual flow for the BB84 chat app
+  const renderFlow = () => {
+    if (project.id === 'bb84-chat') {
+      return (
+        <div className="project-architecture-flow">
+          <div className="flow-node">USER</div>
+          <div className="flow-arrow">↓</div>
+          <div className="flow-node">AUTHENTICATION</div>
+          <div className="flow-arrow">↓</div>
+          <div className="flow-node">REAL-TIME CHAT</div>
+          <div className="flow-arrow">↓</div>
+          <div className="flow-node highlight-node">SECURE KEY SIMULATION (BB84)</div>
+          <div className="flow-arrow">↓</div>
+          <div className="flow-node">MESSAGE EXCHANGE</div>
+        </div>
+      );
     }
-  }, [onClose]);
+    return null;
+  };
 
   return (
-    <div
-      className="modal-overlay"
-      onClick={handleOverlayClick}
-      role="dialog"
-      aria-modal="true"
-      aria-label={`Project details: ${project.title}`}
-      ref={modalRef}
-    >
-      <div className="modal-content">
-        <button
-          ref={closeRef}
-          className="modal-close"
-          onClick={onClose}
-          aria-label="Close project details"
-        >
-          ✕
+    <div className="modal-backdrop" onClick={onClose}>
+      <motion.div 
+        className="modal-content glass-card"
+        onClick={(e) => e.stopPropagation()}
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+      >
+        <button className="modal-close-btn" onClick={onClose} aria-label="Close modal">
+          <X size={24} />
         </button>
 
-        <h3 className="modal-title">{project.title}</h3>
-        <p className="modal-subtitle">{project.subtitle}</p>
-
-        {project.overview && (
-          <div className="modal-section">
-            <h4 className="modal-section-title">Overview</h4>
-            <p>{project.overview}</p>
+        <div className="modal-body">
+          <div className="modal-header">
+            <h3 className="modal-title">{project.title}</h3>
+            <p className="modal-subtitle">{project.subtitle}</p>
           </div>
-        )}
 
-        {project.problem && (
-          <div className="modal-section">
-            <h4 className="modal-section-title">Problem</h4>
-            <p>{project.problem}</p>
-          </div>
-        )}
+          <div className="modal-grid">
+            <div className="modal-left">
+              <div className="modal-section">
+                <h4 className="modal-section-title">Overview</h4>
+                <p className="modal-text">{project.overview}</p>
+              </div>
+              <div className="modal-section">
+                <h4 className="modal-section-title">The Problem</h4>
+                <p className="modal-text">{project.problem}</p>
+              </div>
+              <div className="modal-section">
+                <h4 className="modal-section-title">The Solution</h4>
+                <p className="modal-text">{project.solution}</p>
+              </div>
+              
+              {renderFlow()}
 
-        {project.solution && (
-          <div className="modal-section">
-            <h4 className="modal-section-title">Solution</h4>
-            <p>{project.solution}</p>
-          </div>
-        )}
+              <div className="modal-section">
+                <h4 className="modal-section-title">My Contribution</h4>
+                <p className="modal-text">{project.contribution}</p>
+              </div>
+            </div>
 
-        {project.features && (
-          <div className="modal-section">
-            <h4 className="modal-section-title">Features</h4>
-            <ul className="modal-features">
-              {project.features.map((f, i) => (
-                <li key={i}>{f}</li>
-              ))}
-            </ul>
-          </div>
-        )}
+            <div className="modal-right">
+              <div className="modal-section">
+                <h4 className="modal-section-title">Key Features</h4>
+                <ul className="modal-list">
+                  {project.features.map((feature, i) => (
+                    <li key={i}>{feature}</li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div className="modal-section">
+                <h4 className="modal-section-title">Technologies Used</h4>
+                <div className="skill-badges-container">
+                  {project.technologies.map((tech, i) => (
+                    <span key={i} className="skill-badge">{tech}</span>
+                  ))}
+                </div>
+              </div>
 
-        {project.technologies && (
-          <div className="modal-section">
-            <h4 className="modal-section-title">Tech Stack</h4>
-            <div className="modal-tech-stack">
-              {project.technologies.map((tech) => (
-                <span key={tech} className="modal-tech-tag">{tech}</span>
-              ))}
+              {(project.github || project.liveDemo) && (
+                <div className="modal-actions">
+                  {project.liveDemo && (
+                    <a href={project.liveDemo} target="_blank" rel="noopener noreferrer" className="btn btn-primary w-full">
+                      <ExternalLink size={18} /> View Live Demo
+                    </a>
+                  )}
+                  {project.github && (
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="btn btn-secondary w-full">
+                      <Code size={18} /> View Source Code
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
           </div>
-        )}
-
-        {project.contribution && (
-          <div className="modal-section">
-            <h4 className="modal-section-title">My Contribution</h4>
-            <p>{project.contribution}</p>
-          </div>
-        )}
-
-        <div className="modal-actions">
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary"
-            >
-              View on GitHub ↗
-            </a>
-          )}
-          {project.liveDemo && (
-            <a
-              href={project.liveDemo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-secondary"
-            >
-              Live Demo ↗
-            </a>
-          )}
-          {!project.github && !project.liveDemo && (
-            <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-              Links will be added when the project is deployed.
-            </span>
-          )}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

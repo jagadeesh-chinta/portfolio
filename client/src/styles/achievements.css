@@ -1,67 +1,243 @@
 /* ============================================
-   ACHIEVEMENTS
+   ACHIEVEMENTS — Milestone Spotlight
    ============================================ */
 
-.achievements-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 24px;
-  max-width: 800px;
-  margin: 0 auto;
+.achievements-section {
+  padding: var(--section-padding);
+  background: var(--bg-secondary);
+  position: relative;
+  overflow: hidden;
 }
 
+/* Dark radial spotlight atmosphere */
+.achievements-ambient {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse,
+    rgba(245, 158, 11, 0.07) 0%,
+    rgba(99, 102, 241, 0.05) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  animation: pulseGlow 6s ease-in-out infinite;
+}
+
+/* ---- Layout ---- */
+.achievements-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Base card styles ---- */
 .achievement-card {
-  padding: 32px;
-  background: var(--bg-card);
+  border-radius: var(--radius-xl);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  transition: all var(--transition-base);
-  text-align: center;
+  background: var(--bg-card);
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s ease,
+    opacity 0.25s ease,
+    border-color 0.25s ease;
+  cursor: default;
 }
 
-.achievement-card:hover {
-  border-color: var(--border-accent);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lg), var(--shadow-glow);
+/* Hover lift */
+.ach-hovered {
+  transform: translateY(-10px);
+  z-index: 3;
 }
 
-.achievement-card.primary {
-  border-color: var(--border-accent);
-  background: linear-gradient(135deg, var(--bg-card), var(--accent-subtle));
+/* Sibling dim */
+.ach-dimmed {
+  opacity: 0.45;
+  transform: scale(0.98);
 }
 
-.achievement-card.primary:hover {
-  box-shadow: var(--shadow-lg), 0 0 30px rgba(59, 130, 246, 0.15);
+/* ---- Primary (featured) achievement ---- */
+.achievement-primary {
+  border-color: rgba(245, 158, 11, 0.25);
+  background: linear-gradient(135deg, var(--bg-card) 60%, rgba(245, 158, 11, 0.05) 100%);
 }
 
-.achievement-icon {
+.achievement-primary.ach-hovered {
+  border-color: rgba(245, 158, 11, 0.5);
+  box-shadow:
+    0 20px 60px rgba(245, 158, 11, 0.2),
+    0 8px 30px rgba(0, 0, 0, 0.4),
+    inset 0 0 60px rgba(245, 158, 11, 0.03);
+}
+
+/* Animated glow layer on primary */
+.ach-glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(245, 158, 11, 0.4) 60deg,
+    transparent 120deg,
+    transparent 240deg,
+    rgba(99, 102, 241, 0.3) 300deg,
+    transparent 360deg
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: rotateSlow 6s linear infinite;
+  mask: radial-gradient(circle, transparent 95%, black 96%);
+  -webkit-mask: radial-gradient(circle, transparent 95%, black 96%);
+}
+
+.ach-hovered .ach-glow {
+  opacity: 1;
+}
+
+.ach-primary-content {
+  display: flex;
+  gap: 28px;
+  padding: 36px;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+}
+
+.ach-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-amber-subtle);
+  border: 1px solid var(--accent-amber-glow);
+  border-radius: var(--radius-xl);
+  flex-shrink: 0;
+  transition: all var(--transition-spring);
+}
+
+.ach-hovered .ach-icon-wrapper {
+  transform: scale(1.1) rotate(-5deg);
+  box-shadow: var(--shadow-amber-glow);
+}
+
+.ach-icon {
   font-size: 2.5rem;
-  margin-bottom: 16px;
+  line-height: 1;
   display: block;
 }
 
-.achievement-title {
-  font-size: 1.15rem;
+.ach-icon-sm {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.ach-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.ach-win-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  background: var(--accent-amber-subtle);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent-amber);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: fit-content;
+}
+
+.ach-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 4px;
+  line-height: 1.25;
 }
 
-.achievement-subtitle {
-  font-size: 0.92rem;
+.ach-subtitle {
+  font-size: 0.9rem;
   font-weight: 600;
-  color: var(--accent);
-  margin-bottom: 12px;
+  color: var(--accent-amber);
+  letter-spacing: 0.3px;
 }
 
-.achievement-description {
-  font-size: 0.88rem;
+.ach-description {
+  font-size: 0.9rem;
   color: var(--text-secondary);
-  line-height: 1.7;
+  line-height: 1.75;
+}
+
+/* ---- Secondary achievements ---- */
+.achievements-secondary {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.achievement-secondary {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 24px;
+}
+
+.achievement-secondary.ach-hovered {
+  border-color: var(--accent-border);
+  box-shadow: var(--shadow-glow), var(--shadow-md);
+}
+
+.ach-secondary-text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.achievement-secondary .ach-title {
+  font-size: 1rem;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .ach-primary-content {
+    flex-direction: column;
+    padding: 24px;
+    gap: 16px;
+  }
+
+  .ach-icon-wrapper {
+    width: 60px;
+    height: 60px;
+  }
+
+  .ach-icon {
+    font-size: 2rem;
+  }
+
+  .ach-dimmed {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @media (max-width: 480px) {
-  .achievements-grid {
+  .achievements-secondary {
     grid-template-columns: 1fr;
   }
 }

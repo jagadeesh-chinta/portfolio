@@ -1,68 +1,111 @@
 /* ============================================
-   FOOTER
+   FOOTER — Minimal Elegant
    ============================================ */
 
 .footer {
-  padding: 40px 0;
-  border-top: 1px solid var(--border);
-  margin-top: 40px;
+  background: var(--bg-primary);
+  position: relative;
+}
+
+/* Top separator line */
+.footer-sep {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-hover), transparent);
 }
 
 .footer-inner {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: var(--container-padding);
+  padding: 28px 28px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  justify-content: space-between;
+  gap: 20px;
   flex-wrap: wrap;
 }
 
-.footer-text {
-  font-size: 0.85rem;
+/* Brand */
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.footer-logo span {
+  color: var(--accent-cyan);
+  -webkit-text-fill-color: var(--accent-cyan);
+}
+
+.footer-tagline {
+  font-size: 0.8rem;
   color: var(--text-muted);
+  font-weight: 500;
 }
 
-.footer-text span {
-  color: var(--accent);
+/* Copyright */
+.footer-copy {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.4;
 }
 
+/* Links */
 .footer-links {
   display: flex;
-  gap: 20px;
+  align-items: center;
+  gap: 14px;
 }
 
 .footer-links a {
   font-size: 0.85rem;
-  color: var(--text-muted);
-  transition: color var(--transition-fast);
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: color var(--transition-base);
+  text-decoration: none;
 }
 
 .footer-links a:hover {
   color: var(--accent);
 }
 
-.footer-back-to-top {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+.footer-top-btn {
   font-size: 0.85rem;
-  color: var(--text-muted);
-  transition: color var(--transition-fast);
+  font-weight: 600;
+  color: var(--text-secondary);
   cursor: pointer;
   background: none;
-  border: none;
-  font-family: inherit;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 5px 12px;
+  transition: all var(--transition-base);
 }
 
-.footer-back-to-top:hover {
+.footer-top-btn:hover {
+  border-color: var(--accent-border);
   color: var(--accent);
+  background: var(--accent-subtle);
 }
 
-@media (max-width: 600px) {
+/* ---- Responsive ---- */
+@media (max-width: 640px) {
   .footer-inner {
     flex-direction: column;
+    align-items: center;
     text-align: center;
+    gap: 16px;
+  }
+
+  .footer-tagline {
+    display: none;
   }
 }

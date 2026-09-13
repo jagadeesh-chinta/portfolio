@@ -1,12 +1,13 @@
 /* ============================================
-   ANIMATIONS
+   ANIMATIONS — Premium Portfolio
    ============================================ */
 
-/* Scroll reveal */
+/* ---- Scroll Reveal ---- */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(28px);
+  transition: opacity 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .reveal.revealed {
@@ -14,72 +15,138 @@
   transform: translateY(0);
 }
 
-/* Stagger children */
-.reveal-stagger > .reveal:nth-child(1) { transition-delay: 0s; }
-.reveal-stagger > .reveal:nth-child(2) { transition-delay: 0.08s; }
-.reveal-stagger > .reveal:nth-child(3) { transition-delay: 0.16s; }
-.reveal-stagger > .reveal:nth-child(4) { transition-delay: 0.24s; }
-.reveal-stagger > .reveal:nth-child(5) { transition-delay: 0.32s; }
-.reveal-stagger > .reveal:nth-child(6) { transition-delay: 0.4s; }
-.reveal-stagger > .reveal:nth-child(7) { transition-delay: 0.48s; }
+/* ---- Stagger children ---- */
+.reveal-stagger > .reveal:nth-child(1)  { transition-delay: 0s; }
+.reveal-stagger > .reveal:nth-child(2)  { transition-delay: 0.07s; }
+.reveal-stagger > .reveal:nth-child(3)  { transition-delay: 0.14s; }
+.reveal-stagger > .reveal:nth-child(4)  { transition-delay: 0.21s; }
+.reveal-stagger > .reveal:nth-child(5)  { transition-delay: 0.28s; }
+.reveal-stagger > .reveal:nth-child(6)  { transition-delay: 0.35s; }
+.reveal-stagger > .reveal:nth-child(7)  { transition-delay: 0.42s; }
+.reveal-stagger > .reveal:nth-child(8)  { transition-delay: 0.49s; }
+.reveal-stagger > .reveal:nth-child(9)  { transition-delay: 0.56s; }
+.reveal-stagger > .reveal:nth-child(10) { transition-delay: 0.63s; }
+.reveal-stagger > .reveal:nth-child(11) { transition-delay: 0.70s; }
+.reveal-stagger > .reveal:nth-child(12) { transition-delay: 0.77s; }
 
-/* Hero-specific stagger */
+/* ---- Hero-specific stagger ---- */
 .hero-stagger > *:nth-child(1) { animation-delay: 0s; }
 .hero-stagger > *:nth-child(2) { animation-delay: 0.1s; }
 .hero-stagger > *:nth-child(3) { animation-delay: 0.2s; }
-.hero-stagger > *:nth-child(4) { animation-delay: 0.3s; }
-.hero-stagger > *:nth-child(5) { animation-delay: 0.4s; }
+.hero-stagger > *:nth-child(4) { animation-delay: 0.32s; }
+.hero-stagger > *:nth-child(5) { animation-delay: 0.44s; }
+.hero-stagger > *:nth-child(6) { animation-delay: 0.56s; }
 
+/* ---- Keyframes ---- */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeIn {
   from { opacity: 0; }
-  to { opacity: 1; }
+  to   { opacity: 1; }
 }
 
 @keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.92);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 @keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-32px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-8px) rotate(1deg); }
+  66%       { transform: translateY(-4px) rotate(-1deg); }
 }
 
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.1); }
-  50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.2); }
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
 }
 
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%       { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes rotateReverse {
+  from { transform: rotate(360deg); }
+  to   { transform: rotate(0deg); }
+}
+
+@keyframes aurora {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position: 200% 0; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes drawLine {
+  from { height: 0; }
+  to   { height: 100%; }
+}
+
+@keyframes dotPulse {
+  0%   { box-shadow: 0 0 0 0 var(--accent-glow); }
+  70%  { box-shadow: 0 0 0 10px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+@keyframes ripple {
+  0%   { transform: scale(0); opacity: 0.5; }
+  100% { transform: scale(4); opacity: 0; }
+}
+
+@keyframes orbitRing {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes particleFade {
+  0%, 100% { opacity: 0.3; }
+  50%       { opacity: 0.8; }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.15); }
+  50%       { box-shadow: 0 0 40px rgba(99, 102, 241, 0.35); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Animation classes ---- */
 .animate-fadeInUp {
-  animation: fadeInUp 0.6s ease forwards;
+  animation: fadeInUp 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   opacity: 0;
 }
 
@@ -89,12 +156,17 @@
 }
 
 .animate-scaleIn {
-  animation: scaleIn 0.6s ease forwards;
+  animation: scaleIn 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   opacity: 0;
 }
 
 .animate-slideInRight {
-  animation: slideInRight 0.7s ease forwards;
+  animation: slideInRight 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  opacity: 0;
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   opacity: 0;
 }
 

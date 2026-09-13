@@ -1,68 +1,165 @@
 /* ============================================
-   ABOUT
+   ABOUT — Editorial Split Layout
    ============================================ */
 
-.about-grid {
+.about-section {
+  padding: var(--section-padding);
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-secondary);
+  /* Subtle grid lines for visual identity */
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Decorative code label in background */
+.about-code-bg {
+  position: absolute;
+  top: 50%;
+  right: -40px;
+  transform: translateY(-50%);
+  font-family: 'Space Grotesk', monospace;
+  font-size: clamp(4rem, 10vw, 9rem);
+  font-weight: 700;
+  color: var(--text-dim);
+  opacity: 0.07;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -3px;
+}
+
+/* ---- Container ---- */
+.about-container {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 50px;
-  align-items: start;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 72px;
+  align-items: center;
 }
 
-.about-text {
-  font-size: 1.02rem;
-  line-height: 1.8;
+/* ---- Text column ---- */
+.about-text-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.about-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -1px;
+}
+
+.about-description {
+  font-size: 1rem;
+  line-height: 1.85;
   color: var(--text-secondary);
+  max-width: 520px;
 }
 
-.about-facts {
+/* ---- Bento fact cards ---- */
+.about-facts-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 12px;
 }
 
 .about-fact-card {
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 18px;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  transition: all var(--transition-base);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-spring);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-fact-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: opacity var(--transition-base);
 }
 
 .about-fact-card:hover {
-  border-color: var(--border-accent);
-  transform: translateY(-2px);
+  border-color: var(--accent-border);
+  background: var(--bg-card-hover);
+  transform: translateY(-4px);
   box-shadow: var(--shadow-glow);
+}
+
+.about-fact-card:hover::before {
+  opacity: 1;
+}
+
+/* First card spans both columns */
+.about-fact-card:first-child {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.about-fact-card:first-child .about-fact-value {
+  font-size: 1.2rem;
+}
+
+.about-fact-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.about-fact-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
 }
 
 .about-fact-label {
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 500;
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: var(--accent);
-  margin-bottom: 6px;
 }
 
-.about-fact-value {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-@media (max-width: 768px) {
-  .about-grid {
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .about-container {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 48px;
   }
 
-  .about-facts {
-    grid-template-columns: 1fr 1fr;
+  .about-code-bg {
+    opacity: 0.04;
+    font-size: 5rem;
+    right: -20px;
+    top: 10%;
+    transform: none;
   }
 }
 
-@media (max-width: 420px) {
-  .about-facts {
+@media (max-width: 480px) {
+  .about-facts-grid {
     grid-template-columns: 1fr;
+  }
+
+  .about-fact-card:first-child {
+    grid-column: auto;
   }
 }

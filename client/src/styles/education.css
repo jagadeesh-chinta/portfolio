@@ -1,87 +1,170 @@
 /* ============================================
-   EDUCATION TIMELINE
+   EDUCATION — Animated Timeline
    ============================================ */
 
-.education-timeline {
+.education-section {
+  padding: var(--section-padding);
+  background: var(--bg-primary);
   position: relative;
-  max-width: 700px;
-  margin: 0 auto;
 }
 
-.education-timeline::before {
+.education-section::before {
   content: '';
   position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, var(--accent), var(--accent-secondary), var(--border));
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(99,102,241,0.05) 0%, transparent 70%);
+  pointer-events: none;
 }
 
-.education-item {
+/* ---- Timeline container ---- */
+.education-timeline {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ---- Timeline item ---- */
+.edu-item {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  grid-template-rows: auto auto;
+  gap: 0 20px;
+  padding-bottom: 8px;
   position: relative;
-  padding-left: 36px;
-  padding-bottom: 36px;
 }
 
-.education-item:last-child {
-  padding-bottom: 0;
+/* Spine line */
+.edu-spine {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  justify-content: center;
+  padding: 4px 0;
 }
 
-.education-dot {
-  position: absolute;
-  left: -5px;
-  top: 4px;
+.edu-spine-line {
+  width: 2px;
+  height: 100%;
+  min-height: 32px;
+  background: linear-gradient(to bottom, var(--accent), var(--border));
+  border-radius: 2px;
+  opacity: 0.5;
+}
+
+/* Dot */
+.edu-dot-wrapper {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 6px;
+  flex-shrink: 0;
+}
+
+.edu-dot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: var(--accent);
-  border: 2px solid var(--bg-primary);
-  box-shadow: 0 0 0 3px var(--accent-glow);
+  background: var(--gradient-primary);
+  box-shadow: 0 0 0 3px var(--accent-subtle);
+  flex-shrink: 0;
+  transition: all var(--transition-spring);
 }
 
-.education-card {
-  padding: 24px;
+.edu-item:hover .edu-dot {
+  animation: dotPulse 0.8s ease;
+  box-shadow: 0 0 0 5px var(--accent-subtle);
+}
+
+/* Card */
+.edu-card {
+  grid-column: 2;
+  grid-row: 1;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  transition: all var(--transition-base);
+  padding: 22px 24px;
+  margin-bottom: 20px;
+  transition: all var(--transition-spring);
 }
 
-.education-card:hover {
-  border-color: var(--border-accent);
+.edu-card:hover {
+  border-color: var(--accent-border);
+  transform: translateX(4px);
   box-shadow: var(--shadow-glow);
 }
 
-.education-institution {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 4px;
-}
-
-.education-degree {
-  font-size: 0.92rem;
-  color: var(--text-secondary);
-  margin-bottom: 8px;
-}
-
-.education-meta {
+.edu-card-header {
   display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   gap: 16px;
-  flex-wrap: wrap;
-  align-items: center;
+  margin-bottom: 12px;
 }
 
-.education-meta span {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  display: inline-flex;
-  align-items: center;
+.edu-card-left {
+  display: flex;
+  flex-direction: column;
   gap: 4px;
 }
 
-.education-grade {
-  font-weight: 600;
-  color: var(--accent) !important;
+.edu-institution {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.edu-degree {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.edu-grade-badge {
+  padding: 5px 12px;
+  background: var(--accent-amber-subtle);
+  border: 1px solid var(--accent-amber-glow);
+  border-radius: var(--radius-full);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent-amber);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.edu-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.edu-meta span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 640px) {
+  .edu-card-header {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .edu-grade-badge {
+    align-self: flex-start;
+  }
+
+  .edu-card {
+    padding: 18px 16px;
+  }
 }

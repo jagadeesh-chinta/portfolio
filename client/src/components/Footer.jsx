@@ -1,39 +1,40 @@
-import { personalInfo, socialLinks } from '../data/portfolio';
-import '../styles/footer.css';
+import { personalInfo } from '../data/portfolio';
+import '../styles/sections.css';
 
 export default function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const currentYear = new Date().getFullYear();
-
+  const year = new Date().getFullYear();
+  
   return (
-    <footer className="footer" role="contentinfo">
-      <div className="footer-inner">
-        <p className="footer-text">
-          © {currentYear} <span>{personalInfo.name}</span>. Built with React & Express.
-        </p>
-
-        <div className="footer-links">
-          {socialLinks.linkedin && (
-            <a
-              href={socialLinks.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn profile"
-            >
-              LinkedIn
-            </a>
-          )}
-          <a href={`mailto:${personalInfo.email}`} aria-label="Send email">
-            Email
-          </a>
+    <footer className="footer" style={{ padding: '60px 0', borderTop: '1px solid var(--rose-pink-border)', background: 'var(--bg-cream)' }}>
+      <div className="container">
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '24px' }}>
+          <div>
+            <h2 style={{ fontSize: '2rem', fontFamily: 'var(--font-serif)', color: 'var(--burgundy)', marginBottom: '8px' }}>
+              {personalInfo.name}
+            </h2>
+            <p style={{ color: 'var(--text-muted)', fontWeight: '500' }}>
+              {personalInfo.title}
+            </p>
+          </div>
+          
+          <nav style={{ display: 'flex', gap: '24px', flexWrap: 'wrap', justifyContent: 'center' }}>
+            {['Home', 'About', 'Skills', 'Projects', 'Experience', 'Contact'].map((item) => (
+              <a 
+                key={item} 
+                href={`#${item.toLowerCase()}`}
+                style={{ color: 'var(--burgundy)', fontWeight: '600', textDecoration: 'none', transition: 'color 0.2s' }}
+                onMouseOver={(e) => e.target.style.color = 'var(--rose-pink)'}
+                onMouseOut={(e) => e.target.style.color = 'var(--burgundy)'}
+              >
+                {item}
+              </a>
+            ))}
+          </nav>
+          
+          <div style={{ color: 'var(--text-soft)', fontSize: '0.9rem', marginTop: '32px' }}>
+            &copy; {year} {personalInfo.name}. All rights reserved.
+          </div>
         </div>
-
-        <button className="footer-back-to-top" onClick={scrollToTop} aria-label="Back to top">
-          ↑ Back to top
-        </button>
       </div>
     </footer>
   );

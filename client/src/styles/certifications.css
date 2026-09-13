@@ -1,53 +1,96 @@
 /* ============================================
-   CERTIFICATIONS
+   CERTIFICATIONS — Glass Cards
    ============================================ */
 
-.certifications-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-  max-width: 900px;
-  margin: 0 auto;
+.certifications-section {
+  padding: var(--section-padding);
+  background: var(--bg-primary);
+  position: relative;
 }
 
-.certification-card {
+.certifications-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(99,102,241,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ---- Grid ---- */
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Card ---- */
+.cert-card {
   padding: 24px;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  transition: all var(--transition-base);
   display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: all var(--transition-spring);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top glass sheen */
+.cert-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-hover), transparent);
+}
+
+.cert-card:hover {
+  border-color: var(--accent-border);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-glow), var(--shadow-md);
+  background: var(--bg-card-hover);
+}
+
+.cert-card-top {
+  display: flex;
+  justify-content: space-between;
   align-items: flex-start;
-  gap: 16px;
 }
 
-.certification-card:hover {
-  border-color: var(--border-accent);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+.cert-icon {
+  font-size: 1.8rem;
+  line-height: 1;
 }
 
-.certification-icon {
-  font-size: 1.5rem;
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  display: flex;
+.cert-issuer-badge {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  background: var(--accent-subtle);
-  border-radius: var(--radius-md);
+  padding: 3px 10px;
+  border: 1px solid;
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
 }
 
-.certification-title {
+.cert-title {
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: 4px;
+  line-height: 1.4;
 }
 
-.certification-issuer {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  font-weight: 500;
+/* ---- Responsive ---- */
+@media (max-width: 640px) {
+  .certifications-grid {
+    grid-template-columns: 1fr;
+  }
 }
