@@ -184,7 +184,7 @@ export const projects = [
     contribution: '',
     technologies: ['React', 'CSS3', 'Vite', 'Framer Motion'],
     github: 'https://github.com/jagadeesh-chinta/portfolio',
-    liveDemo: '',
+    liveDemo: 'https://portfolio-3t5d.onrender.com/',
     disableModal: true,
   },
 ];

@@ -85,15 +85,30 @@ export default function Projects() {
                   </div>
                   
                   {project.disableModal ? (
-                    <a 
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-view-details highlighted"
-                      style={{ textDecoration: 'none' }}
-                    >
-                      View Code
-                    </a>
+                    <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                      {project.liveDemo && (
+                        <a 
+                          href={project.liveDemo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-view-details"
+                          style={{ textDecoration: 'none', border: '1px solid var(--rose-pink)' }}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          Live Demo
+                        </a>
+                      )}
+                      <a 
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-view-details highlighted"
+                        style={{ textDecoration: 'none' }}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        View Code
+                      </a>
+                    </div>
                   ) : (
                     <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
                       {project.liveDemo && (

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { personalInfo } from '../data/portfolio';
-import { ArrowRight, Download, Code2, GraduationCap, Code, Link, Mail } from 'lucide-react';
+import { ArrowRight, Download, Code2, GraduationCap, Code, Link, Mail, FileText, Eye } from 'lucide-react';
 import '../styles/hero.css';
 
 const containerVariants = {
@@ -103,10 +103,20 @@ export default function Hero() {
               Explore My Work
               <ArrowRight size={18} />
             </button>
-            <a href={personalInfo.resumePdf} download="Jagadeesh_Chinta_Resume.pdf" className="btn-resume">
-              <Download size={18} className="text-rose" />
-              <span>Download Resume</span>
-            </a>
+            <div className="resume-btn-group">
+              <button className="btn-resume">
+                <FileText size={18} className="text-rose" />
+                <span>Resume</span>
+              </button>
+              <div className="resume-options">
+                <a href={personalInfo.resumePdf} download="Jagadeesh_Chinta_Resume.pdf" className="resume-option-btn">
+                  <Download size={14} /> Download
+                </a>
+                <a href={personalInfo.resumePdf} target="_blank" rel="noopener noreferrer" className="resume-option-btn">
+                  <Eye size={14} /> View
+                </a>
+              </div>
+            </div>
           </motion.div>
 
           <motion.div variants={itemVariants} className="hero-socials">
