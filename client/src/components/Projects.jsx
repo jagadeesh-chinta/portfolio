@@ -22,8 +22,9 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
 
   return (
-    <section id="projects" className="section bg-alt" aria-label="Projects">
-      <div className="container">
+    <>
+      <section id="projects" className="section bg-alt" aria-label="Projects">
+        <div className="container">
         <motion.div 
           className="section-header"
           initial={{ opacity: 0, y: 30 }}
@@ -85,13 +86,14 @@ export default function Projects() {
             </motion.div>
           ))}
         </motion.div>
-      </div>
+        </div>
+      </section>
 
       <AnimatePresence>
         {selectedProject && (
           <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
         )}
       </AnimatePresence>
-    </section>
+    </>
   );
 }

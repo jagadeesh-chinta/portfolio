@@ -12,81 +12,146 @@
   padding: 12px 0;
 }
 
-.navbar-inner {
+.navbar-pill-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: transparent;
-  padding: 12px 24px;
+  width: 100%;
+  background: var(--bg-white);
+  padding: 8px 8px 8px 24px;
   border-radius: 999px;
-  transition: all var(--transition-smooth);
-  border: 1px solid transparent;
+  box-shadow: 0 10px 40px rgba(224, 90, 136, 0.08);
+  border: 1px solid rgba(255,255,255, 0.5);
 }
 
-.navbar-wrapper.scrolled .navbar-inner {
-  background: var(--bg-glass-strong);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--rose-pink-border);
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
-.navbar-logo {
+.brand-logo-circle {
+  width: 44px;
+  height: 44px;
+  background: var(--rose-pink);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(224, 90, 136, 0.3);
+}
+
+.brand-text-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
   font-family: var(--font-serif);
   font-size: 1.25rem;
   font-weight: 800;
   color: var(--burgundy);
-  letter-spacing: 0.05em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.brand-title {
+  font-size: 0.75rem;
+  color: var(--coral-hover);
+  font-weight: 600;
+  line-height: 1.2;
 }
 
 .navbar-links {
   display: flex;
-  gap: 24px;
+  gap: 8px;
   align-items: center;
 }
 
 .nav-link {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  transition: color var(--transition-fast);
-  position: relative;
-}
-
-.nav-link:hover, .nav-link.active {
-  color: var(--rose-pink);
-}
-
-.nav-link.active::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--grad-rose-coral);
-  border-radius: 2px;
-}
-
-.btn-download-sm {
-  display: flex;
-  align-items: center;
-  gap: 6px;
   font-size: 0.85rem;
   font-weight: 700;
-  color: var(--rose-pink);
-  background: var(--rose-pink-subtle);
+  color: var(--text-main);
   padding: 8px 16px;
   border-radius: 999px;
-  border: 1px solid var(--rose-pink-border);
   transition: all var(--transition-fast);
 }
 
-.btn-download-sm:hover {
-  background: var(--rose-pink);
-  color: #fff;
+.nav-link:hover {
+  color: var(--rose-pink);
+}
+
+.nav-link.active {
+  background: var(--rose-pink-subtle);
+  color: var(--rose-pink);
+}
+
+.btn-connect {
+  background: var(--grad-rose-coral);
+  color: white;
+  padding: 10px 24px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  line-height: 1.2;
+  box-shadow: 0 4px 15px rgba(224, 90, 136, 0.4);
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.btn-connect:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-rose);
+  box-shadow: 0 6px 20px rgba(224, 90, 136, 0.5);
+}
+
+.connect-icon {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  opacity: 0.8;
+}
+
+.navbar-location-badge {
+  margin-top: 8px;
+  margin-left: 24px;
+  background: var(--bg-white);
+  padding: 6px 16px;
+  border-radius: 0 0 16px 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid rgba(224, 90, 136, 0.1);
+  border-top: none;
+}
+
+.location-dot {
+  width: 8px;
+  height: 8px;
+  background: #2ecc71; /* Green dot */
+  border-radius: 50%;
+}
+
+.location-text {
+  color: var(--text-muted);
+}
+
+.location-divider {
+  color: var(--text-soft);
+}
+
+.location-status {
+  color: var(--rose-pink);
 }
 
 .mobile-only {
@@ -98,6 +163,7 @@
   border: none;
   color: var(--burgundy);
   cursor: pointer;
+  padding-right: 16px;
 }
 
 /* Mobile Menu Overlay */
@@ -135,7 +201,6 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  flex-grow: 1;
 }
 
 .mobile-nav-link {
@@ -145,11 +210,14 @@
   color: var(--burgundy);
 }
 
-.w-full {
-  width: 100%;
+@media (max-width: 1100px) {
+  .nav-link {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
   .desktop-only {
     display: none !important;
   }

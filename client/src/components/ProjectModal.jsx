@@ -1,8 +1,17 @@
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { X, ExternalLink, Code } from 'lucide-react';
 import '../styles/projects.css';
 
 export default function ProjectModal({ project, onClose }) {
+  useEffect(() => {
+    // Disable body scroll and hide navbar when modal is open
+    document.body.classList.add('modal-open');
+    return () => {
+      // Re-enable body scroll and show navbar when modal is closed
+      document.body.classList.remove('modal-open');
+    };
+  }, []);
   // Add specific visual flow for the BB84 chat app
   const renderFlow = () => {
     if (project.id === 'bb84-chat') {

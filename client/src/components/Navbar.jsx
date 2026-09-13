@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Download } from 'lucide-react';
+import { Menu, X, ArrowUpRight, MapPin } from 'lucide-react';
 import { personalInfo } from '../data/portfolio';
 import '../styles/navbar.css';
 
@@ -8,8 +8,8 @@ const navLinks = [
   { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
   { name: 'Skills', href: '#skills' },
+  { name: 'Project', href: '#projects' },
   { name: 'Experience', href: '#experience' },
-  { name: 'Projects', href: '#projects' },
   { name: 'Education', href: '#education' },
   { name: 'Achievements', href: '#achievements' },
   { name: 'Certifications', href: '#certifications' },
@@ -25,9 +25,8 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      // Scroll spy logic
       const sections = navLinks.map(link => document.querySelector(link.href));
-      const scrollPosition = window.scrollY + 100;
+      const scrollPosition = window.scrollY + 200;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i];
@@ -39,20 +38,33 @@ export default function Navbar() {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const scrollToContact = (e) => {
+    e.preventDefault();
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <>
       <header className={`navbar-wrapper ${scrolled ? 'scrolled' : ''}`}>
-        <div className="container">
-          <nav className="navbar-inner">
-            <a href="#home" className="navbar-logo">
-              JAGADEESH
-            </a>
+        <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+          
+          <nav className="navbar-pill-container glass-card">
+            {/* Logo Section */}
+            <div className="navbar-brand">
+              <div className="brand-logo-circle">
+                {personalInfo.name.charAt(0)}
+              </div>
+              <div className="brand-text-container">
+                <h1 className="brand-name">{personalInfo.name}</h1>
+                <span className="brand-title">Software Engineer &<br/>Full Stack</span>
+              </div>
+            </div>
 
-            {/* Desktop Navigation */}
+            {/* Desktop Links */}
             <div className="navbar-links desktop-only">
               {navLinks.map((link) => (
                 <a 
@@ -65,9 +77,11 @@ export default function Navbar() {
               ))}
             </div>
 
-            <div className="navbar-actions desktop-only">
-              <a href={personalInfo.resumePdf} download="Jagadeesh_Chinta_Resume.pdf" className="btn-download-sm">
-                <Download size={16} /> Resume
+            {/* CTA Button */}
+            <div className="navbar-cta desktop-only">
+              <a href="#contact" onClick={scrollToContact} className="btn-connect">
+                Let's <br/> Connect
+                <ArrowUpRight size={14} className="connect-icon" />
               </a>
             </div>
 
@@ -80,10 +94,19 @@ export default function Navbar() {
               <Menu size={24} />
             </button>
           </nav>
+
+          {/* Floating Location Badge */}
+          <div className="navbar-location-badge">
+            <span className="location-dot"></span>
+            <span className="location-text">Rajam, India</span>
+            <span className="location-divider">•</span>
+            <span className="location-status">Open to Opportunities</span>
+          </div>
+
         </div>
       </header>
 
-      {/* Mobile Navigation Overlay */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div 
@@ -99,11 +122,7 @@ export default function Navbar() {
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             >
-              <button 
-                className="close-menu-btn"
-                onClick={() => setMobileMenuOpen(false)}
-                aria-label="Close Menu"
-              >
+              <button className="close-menu-btn" onClick={() => setMobileMenuOpen(false)}>
                 <X size={28} />
               </button>
 
@@ -122,17 +141,6 @@ export default function Navbar() {
                   </motion.a>
                 ))}
               </div>
-
-              <motion.div 
-                className="mobile-menu-footer"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.6 }}
-              >
-                <a href={personalInfo.resumePdf} download="Jagadeesh_Chinta_Resume.pdf" className="btn btn-primary w-full">
-                  <Download size={18} /> Download Resume
-                </a>
-              </motion.div>
             </motion.div>
           </motion.div>
         )}

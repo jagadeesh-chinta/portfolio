@@ -139,16 +139,17 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 24px;
+  padding: 40px 24px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .modal-content {
   width: 100%;
   max-width: 1000px;
-  max-height: 90vh;
-  overflow-y: auto;
+  margin: auto;
   border-radius: 32px;
   background: var(--bg-cream);
   padding: 48px;

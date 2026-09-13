@@ -9,6 +9,8 @@ export const personalInfo = {
   email: 'jagadeeshchinta6@gmail.com',
   phone: '+91 93468 69157',
   location: 'Rajam, India',
+  linkedin: 'https://www.linkedin.com/in/jagadeesh-chinta-408b7b347/',
+  github: 'https://github.com/jagadeesh-chinta',
   profileImage,
   resumePdf,
   description:
@@ -18,7 +20,7 @@ export const personalInfo = {
 };
 
 export const socialLinks = {
-  linkedin: 'https://linkedin.com/in/jagadeesh-chinta',
+  linkedin: 'https://www.linkedin.com/in/jagadeesh-chinta-408b7b347/',
   // TODO: Add your GitHub URL when available
   // github: 'https://github.com/your-username',
 };
@@ -86,6 +88,13 @@ export const skills = [
     items: [
       { name: 'GitHub', icon: '🐙' },
       { name: 'VS Code', icon: '📝' },
+    ],
+  },
+  {
+    category: 'Languages',
+    items: [
+      { name: 'English (Fluent)', icon: '🗣️' },
+      { name: 'Telugu (Native)', icon: '🇮🇳' },
     ],
   },
 ];
@@ -165,27 +174,33 @@ export const projects = [
 export const education = [
   {
     institution: 'GMR Institute of Technology',
-    degree: 'B.Tech — Computer Science and Engineering (AI & ML)',
-    location: 'Rajam, Andhra Pradesh',
-    startDate: 'Aug 2023',
-    endDate: 'May 2027',
-    grade: 'CGPA: 8.7',
+    degree: 'Bachelor of Technology (B.Tech)',
+    location: 'Rajam, India',
+    startDate: '2023',
+    endDate: '2027',
+    status: 'Currently Pursuing',
+    grade: 'CGPA: 8.87',
+    description: 'Artificial Intelligence & Machine Learning specialization coursework, hands-on programming labs, and robust foundation in computer science.',
   },
   {
     institution: 'Gayatri Junior College',
-    degree: 'Intermediate — MPC',
-    location: 'Rajam, Andhra Pradesh',
-    startDate: 'Jun 2021',
-    endDate: 'May 2023',
+    degree: 'Intermediate Education',
+    location: 'Rajam, India',
+    startDate: '2021',
+    endDate: '2023',
+    status: 'Completed',
     grade: '98.3%',
+    description: 'Rigorous academic training with strong emphasis on Mathematics, Physics, and Chemistry.',
   },
   {
     institution: 'Viswasanthi Vidyalayam',
-    degree: 'Secondary School',
-    location: 'Rajam, Andhra Pradesh',
-    startDate: 'Jun 2020',
-    endDate: 'May 2021',
+    degree: 'Secondary School Certificate (SSC)',
+    location: 'Rajam, India',
+    startDate: '2020',
+    endDate: '2021',
+    status: 'Completed',
     grade: '95%',
+    description: 'Graduated with top academic standing with broad foundational excellence.',
   },
 ];
 
