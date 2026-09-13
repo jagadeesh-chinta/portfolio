@@ -172,6 +172,21 @@ export const projects = [
     github: '',
     liveDemo: '',
   },
+  {
+    id: 'portfolio',
+    title: 'Portfolio',
+    subtitle: 'Interactive Web Developer Portfolio',
+    overview:
+      'A modern, highly responsive personal portfolio website built with React and Vite. Features interactive animations, sleek styling, and dynamic components to showcase my skills and projects.',
+    problem: '',
+    solution: '',
+    features: [],
+    contribution: '',
+    technologies: ['React', 'CSS3', 'Vite', 'Framer Motion'],
+    github: 'https://github.com/jagadeesh-chinta/portfolio',
+    liveDemo: '',
+    disableModal: true,
+  },
 ];
 
 export const education = [
