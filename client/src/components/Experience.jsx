@@ -57,9 +57,11 @@ export default function Experience() {
                     <li key={j}>{h}</li>
                   ))}
                 </ul>
-                <div className="skill-badges-container mt-4">
+                <div className="skill-badges-container mt-4" style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center' }}>
                   {exp.technologies.map((tech, j) => (
-                    <span key={j} className="skill-badge">{tech}</span>
+                    <span key={j} className="skill-badge" style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--text-main)', fontWeight: '600', fontSize: '0.9rem' }}>
+                      <span style={{ color: 'var(--coral)', fontSize: '1.2rem', lineHeight: '1' }}>•</span> {tech}
+                    </span>
                   ))}
                 </div>
               </div>

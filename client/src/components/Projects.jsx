@@ -73,13 +73,19 @@ export default function Projects() {
                 
                 <p className="project-overview">{project.overview}</p>
                 
-                <div className="project-tech-badges">
-                  {project.technologies.slice(0, 4).map(tech => (
-                    <span key={tech} className="tech-chip">{tech}</span>
-                  ))}
-                  {project.technologies.length > 4 && (
-                    <span className="tech-chip">+{project.technologies.length - 4}</span>
-                  )}
+                <div className="project-card-footer" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '24px', flexWrap: 'wrap', gap: '16px' }}>
+                  <div className="project-tech-badges" style={{ margin: 0 }}>
+                    {project.technologies.slice(0, 4).map(tech => (
+                      <span key={tech} className="tech-chip">{tech}</span>
+                    ))}
+                    {project.technologies.length > 4 && (
+                      <span className="tech-chip">+{project.technologies.length - 4}</span>
+                    )}
+                  </div>
+                  
+                  <span className="btn-view-details highlighted">
+                    View Details
+                  </span>
                 </div>
               </div>
               <div className="project-glow-layer" />

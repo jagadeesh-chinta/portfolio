@@ -9,7 +9,7 @@
 
 .hero-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
   gap: 40px;
   align-items: flex-start;
   position: relative;
@@ -24,7 +24,8 @@
   gap: 24px;
   position: relative;
   z-index: 2;
-  padding-top: 10px; /* fine tune alignment with image */
+  padding-top: 10px;
+  width: 100%;
 }
 
 .hero-greeting {
@@ -34,14 +35,17 @@
   color: var(--coral-hover);
   letter-spacing: 0.02em;
   margin-bottom: -10px;
+  min-height: 1.2em;
 }
 
 .hero-heading {
-  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
   font-weight: 800;
   color: var(--burgundy);
   line-height: 1.1;
   margin-top: -12px;
+  white-space: nowrap;
+  min-height: 1.1em;
 }
 
 .cursor-blink {
@@ -191,7 +195,7 @@
 /* Arch Image */
 .hero-visual {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   position: relative;
 }

@@ -135,9 +135,9 @@
   position: fixed;
   inset: 0;
   z-index: 2000;
-  background: rgba(46, 25, 35, 0.4);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(46, 25, 35, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -282,6 +282,40 @@
   background: var(--grad-rose-coral);
   color: white;
   box-shadow: var(--shadow-rose);
+}
+
+.project-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  /* margin-top moved to inline style in jsx */
+}
+
+.btn-view-details {
+  background: var(--bg-white);
+  color: var(--burgundy);
+  border: 1px solid var(--rose-pink-border);
+  padding: 8px 24px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  transition: all var(--transition-fast);
+}
+
+.btn-view-details.highlighted {
+  background: var(--grad-rose-coral);
+  color: white;
+  border: none;
+  box-shadow: 0 6px 20px rgba(224, 90, 136, 0.3);
+  padding: 10px 24px;
+}
+
+.project-card-premium:hover .btn-view-details {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(224, 90, 136, 0.4);
 }
 
 .flow-arrow {

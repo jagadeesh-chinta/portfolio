@@ -137,13 +137,16 @@ export const projects = [
       'Simulated BB84 Quantum Key Distribution',
       'Responsive React-based interface',
       'RESTful API backend',
+      'Restore specific user chat',
+      'Text to audio and audio to text translation',
+      'Scheduling message',
+      'Screenshot protection',
     ],
     contribution:
       'Designed and developed the full application — including the React frontend, Express/Node.js backend, MongoDB database integration, and the BB84 protocol simulation layer.',
     technologies: ['React', 'Express', 'Node.js', 'MongoDB', 'BB84 Protocol'],
-    // TODO: Add actual URLs when available
-    github: '',
-    liveDemo: '',
+    github: 'https://github.com/jagadeesh-chinta/SafeConnect',
+    liveDemo: 'https://safeconnect-frontend-r2fz.onrender.com',
   },
   {
     id: 'sansthaein-samvidhan',
@@ -163,7 +166,7 @@ export const projects = [
       'Engaging visual design',
     ],
     contribution:
-      'Built the complete full-stack application — frontend with React and Tailwind CSS, backend with Node.js and Express, and database with MongoDB. This project won Smart India Hackathon 2024.',
+      'Served as the Frontend Developer in this group project. I designed and developed the responsive user interface and interactive gamified learning modules using React and Tailwind CSS. Our team\'s collaborative effort won the Smart India Hackathon 2024.',
     technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS'],
     // TODO: Add actual URLs when available
     github: '',

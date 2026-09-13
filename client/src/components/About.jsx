@@ -19,20 +19,20 @@ export default function About() {
   return (
     <section id="about" className="section" aria-label="About Me">
       <div className="container" style={{ maxWidth: '1100px' }}>
-        
+
         {/* Header Section */}
-        <motion.div 
+        <motion.div
           className="about-header-centered"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
         >
           <span className="section-pill-centered">ABOUT ME</span>
-          
+
           <h2 className="about-main-heading">
             Passionate About Turning <span className="highlight-text">Logic <br className="mobile-only-br" /> &amp; Code</span> Into Solutions
           </h2>
-          
+
           <p className="about-subtitle">
             A passionate Software Engineer and Full Stack Developer combining machine learning <br className="desktop-only" />
             concepts with modern web architecture.
@@ -40,7 +40,7 @@ export default function About() {
         </motion.div>
 
         {/* Cards Layout */}
-        <motion.div 
+        <motion.div
           className="about-cards-layout"
           variants={containerVariants}
           initial="hidden"
@@ -50,15 +50,19 @@ export default function About() {
           {/* Left Large Card */}
           <motion.div variants={itemVariants} className="about-main-card">
             <h3 className="about-card-heading">Engineering Mindset, Technical Precision</h3>
-            
+
             <p className="about-card-text">
-              Based in Rajam, India, I am pursuing my Bachelor of Technology at GMR Institute of Technology, maintaining an academic CGPA of <strong>8.87</strong>. My journey centers on the powerful synergy between <strong>full-stack development</strong>, <strong>artificial intelligence</strong>, and <strong>robust software architecture</strong>.
+              I am currently pursuing my B.Tech in Computer Science and Engineering with a specialization in Artificial Intelligence and Machine Learning at GMR Institute of Technology.
             </p>
-            
+
             <p className="about-card-text">
-              With a strong foundation in modern web technologies (React, Node.js, Express, MongoDB) alongside Python and C, I bridge algorithmic research with intuitive user-facing products. Whether it is building secure real-time communication systems like BB84 or constructing scalable e-commerce platforms, I focus on delivering clean, reliable solutions.
+              Throughout my academic journey, I have developed a strong interest in Java, web development, data structures, and database management systems. I have actively participated in projects and hackathons, and I am proud to have been part of the team that won the Smart India Hackathon 2024. This experience enhanced my technical knowledge, problem-solving ability, and teamwork.
             </p>
-            
+
+            <p className="about-card-text">
+              Additionally, I completed an internship in AWS Cloud, where I gained hands-on experience with services such as EC2, S3, and IAM.
+            </p>
+
             <div className="about-checkmarks">
               <span className="checkmark-item">
                 <CheckCircle2 size={16} className="check-icon" /> Continuous Learner
@@ -74,7 +78,7 @@ export default function About() {
 
           {/* Right Stacked Cards */}
           <div className="about-side-cards">
-            
+
             <motion.div variants={itemVariants} className="side-card card-border-rose">
               <div className="side-card-icon icon-rose">
                 <GraduationCap size={20} color="white" />

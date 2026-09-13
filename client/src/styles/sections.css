@@ -213,6 +213,12 @@
 .bg-solid-burgundy { background: var(--burgundy-light); box-shadow: 0 4px 12px rgba(100, 28, 54, 0.3); }
 
 /* Dot colors */
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
 .dot-mustard { background: var(--mustard); }
 .dot-rose { background: var(--rose-pink); }
 .dot-coral { background: var(--coral); }
